@@ -31,25 +31,17 @@ if (isset($_POST['mobile'])) {
 
 // Create a common function for send SMS
 function sendSMS($mobile, $otp) {
-    // Account details
-    $apiKey = urlencode('OnZXSmVLbWg2anpoQUF4NGs=');
-    // Message details
-    $numbers = array($mobile);
-    $sender  = urlencode('SMSCL');
-    $message = rawurlencode('Your One Time Password is '.$otp.' for verification your account.');
-    $numbers = implode(',', $numbers);
-
-    // Prepare data for POST request
-    $data = array('apikey' => $apiKey, 'numbers' => $numbers, "sender" => $sender, "message" => $message);
-
-    // Send the POST request with cURL
-    $ch = curl_init('https://sms.arkesel.com/sms/api?action=send-sms&api_key=OnZXSmVLbWg2anpoQUF4NGs=&to=PhoneNumber&from=SenderID&sms=YourMessage');
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $response = curl_exec($ch);
-    curl_close($ch);
-    // Process your response here
+    $curl = curl_init('https://sms.arkesel.com/sms/api?action=send-sms&api_key=OnZXSmVLbWg2anpoQUF4NGs=&to='.$mobile.'&from=Nhyiraba&sms=Thanks for registering with us.. Your login code is '.$otp.'');
+    curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_ENCODING => '',
+        CURLOPT_MAXREDIRS => 10,
+        CURLOPT_TIMEOUT => 0,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+        CURLOPT_CUSTOMREQUEST => 'GET', ));
+    $response = curl_exec($curl);
+    curl_close($curl);
     return $response;
 }
 

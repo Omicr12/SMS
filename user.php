@@ -19,25 +19,25 @@
 <div class="container">
     <div class="row">
         <div class="col-md-3">
-            <h6 class="text-center text-secondary">REGISTER</h6>
+            <h6 class="text-center text-secondary">LOGIN</h6>
         </div>
         <div class="col-md-6 bg-light">
-            <form id="submitForm">
+            <form id="submitt">
                 <div class="form-group">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" name="name" placeholder="Enter Name" required="">
                 </div>
-                <div class="form-group">
+               <!--  <div class="form-group">
                     <label for="mobile">Mobile Number:</label>
                     <input type="text" class="form-control" name="mobile" placeholder="Enter Mobile number" required="">
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input type="email" class="form-control" name="email" placeholder="Enter Email" required="">
                 </div>
                 <div class="form-group">
-                    <p>Already have account ?<a href="login.php" class="text-danger"> Login</a></p>
-                    <button type="submit" class="btn btn-danger">Sign Up</button>
+                    <p>No account ?<a href="register.php" class="text-danger"> Register here</a></p>
+                    <button type="submit" class="btn btn-danger">Enter</button>
                 </div>
             </form>
         </div>
@@ -48,20 +48,20 @@
 <!--ajax script for registration-->
 <script>
     $(document).ready(function(){
-        $("#submitForm").on("submit", function(e){
+        $("#submitt").on("submit", function(e){
             e.preventDefault();
             var formData = $(this).serialize();
             $.ajax({
-                url  : "reg.php",
+                url  : "use.php",
                 type : "POST",
                 cache:false,
                 data : formData,
                 success:function(result){
                     if (result == "yes") {
-                        alert("Registration sucessful,Please login");
-                        window.location ='login.php';
+                        // alert("Registration sucessful,Please login");
+                        window.location ='index.php';
                     }else{
-                        alert("Registration failed try again!");
+                        alert("Wrong Details");
                     }
                 }
             });

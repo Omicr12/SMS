@@ -3,5 +3,5 @@ session_start();
 session_destroy();
 unset($_SESSION['MOBILE']);
 unset($_SESSION['USERNAME']);
-header("Location:login.php");
+header("Location:user.php");
 ?>

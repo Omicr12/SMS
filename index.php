@@ -3,7 +3,7 @@
 session_start();
 
 if (isset($_SESSION['MOBILE'])) {
-    echo "Hello" . "  ". "<b>" . ucwords($_SESSION['USERNAME']). "</b>";
+    // echo "Hello" . "  ". "<b>" . ucwords($_SESSION['USERNAME']). "</b>";
 }else{
     header("Location:login.php");
     die();
@@ -31,6 +31,7 @@ if (isset($_SESSION['MOBILE'])) {
 </head>
 <body>
 <br><br>
+<h6>WELCOME <?= $_SESSION['USERNAME']?></h6>
 <p><a href="logout.php">Logout</a></p>
 </body>
 </html>
